@@ -1,6 +1,5 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'].'/settings.php';
-include $DOCROOT.'/templates/header.php';
 $id=$_GET['id'];
 
 // Category query
@@ -10,14 +9,16 @@ try {
 
   // Get $page_title from query.
   $page_title = $cat_r['name'];
-
-  echo '<h1>'.$page_title.'</h1>';
 }
 
 // Print errors
 catch(PDOException $e) {
   print ("exception " . $e->getMessage());
 }
+
+// Load page header
+include $DOCROOT.'/templates/header.php';
+echo '<h1>'.$page_title.'</h1>';
 
 // Category list header
 include $DOCROOT.'/templates/list_header.php';
@@ -35,7 +36,9 @@ catch(PDOException $e) {
   print ("exception " . $e->getMessage());
 }
 
+// Load list footer
 include $DOCROOT.'/templates/list_footer.php';
 
+// Load page footer
 include $DOCROOT.'/templates/footer.php';
 ?>

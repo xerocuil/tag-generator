@@ -1,4 +1,10 @@
 <?php
+if (isset($page_title)) {
+	$header_title =  $page_title. ' | '. $APPTITLE;
+} else {
+	$header_title = 'Tag Generator | '.$APP_DESC;
+}
+
 echo '
 <!DOCTYPE html>
 <html>
@@ -8,7 +14,7 @@ echo '
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Tag Generator</title>
+  <title>'.$header_title.'</title>
   <meta name="description" content="A simple PHP-based price tag generator.">
 
   <link rel="stylesheet" href="/assets/css/main.css">

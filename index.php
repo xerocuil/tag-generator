@@ -3,9 +3,6 @@ $page_title = 'Home';
 require $_SERVER['DOCUMENT_ROOT'].'/settings.php';
 include $DOCROOT.'/templates/header.php';
 
-echo '
-<h1>'.$page_title.'</h1>';
-
 // Items table header
 echo '
 <h2>Items</h2>';
