@@ -7,5 +7,6 @@ echo '
       <th>Category</td>
       <th>Price</td>
       <th>Tag</td>
+      <th>&nbsp;</td>
     </tr>';
 ?>

@@ -1,0 +1,13 @@
+*.7z
+*.[Bb][Aa][Kk]
+*.db
+*.log
+*.sass
+*.sqlite3
+*.sublime-*
+*.tar.gz
+*.zip
+*_log
+_bin
+debug*
+test*

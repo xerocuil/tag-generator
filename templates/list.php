@@ -11,6 +11,7 @@ foreach($items_r as $r){
       <td><a href="/categories/view.php?id='.$cat_id.'">'.$cat_r['name'].'</a></td>
       <td>'.$r['price'].'</td>
       <td>'.$r['tag'].'</td>
+      <td><a href="/items/edit.php?id='.$r['id'].'">Edit</a></td>
     </tr>';
 }
 ?>

@@ -1,8 +1,8 @@
 <?php
 if (isset($page_title)) {
-	$header_title =  $page_title. ' | '. $APPTITLE;
+  $header_title =  $page_title. ' | '. $APPTITLE;
 } else {
-	$header_title = 'Tag Generator | '.$APP_DESC;
+  $header_title = 'Tag Generator | '.$APP_DESC;
 }
 
 echo '
@@ -18,24 +18,28 @@ echo '
   <meta name="description" content="A simple PHP-based price tag generator.">
 
   <link rel="stylesheet" href="/assets/css/main.css">
+
+  <script src="/assets/js/font-awesome.js"></script>
 </head>
 
 <body>
 
 <div id="header">
-	<nav class="container">
-		<div class="columns">
-			<div class="column">
-				<span id="site-title"><a href="/">Tag Generator</a></span>
-			</div>
+  <div class="container">
+    <nav>
+      <div class="columns">
+        <div class="column">
+          <span id="site-title"><a href="/"><img src="/assets/img/logo.svg" style="height: 32px; width: auto;"></a></span>
+        </div>
 
-			<div class="column has-text-right">
-				<ul>
-					<li><a href="/categories/">Categories</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+        <div class="column has-text-right">
+          <ul>
+            <li><a class="button" href="/categories/">Categories</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
 </div>
 
 <div id="content" class="container">
