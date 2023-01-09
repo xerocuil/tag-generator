@@ -1,6 +1,6 @@
 <?php
 echo '
-  <table class="table">
+  <table class="table is-fullwidth">
     <tr>
       <th>Name</td>
       <th>Description</td>

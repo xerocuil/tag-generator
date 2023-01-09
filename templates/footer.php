@@ -1,5 +1,3 @@
-<?php
-echo '
 </article>
 </div>
 
@@ -13,5 +11,3 @@ echo '
 
 </body>
 </html>
-';
-?>
