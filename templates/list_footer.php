@@ -1,4 +1,6 @@
 <?php
-echo '</table>
-<hr>';
+echo '
+</table>
+<hr>
+';
 ?>

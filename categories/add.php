@@ -1,39 +1,70 @@
 <?php
-//require $_SERVER['DOCUMENT_ROOT'].'/incl/session.php';
-$pageTitle = "New Category";
-$message = "";
-require $_SERVER['DOCUMENT_ROOT'].'/incl/settings.php';
-include $appdir.'/incl/header-default.php';
+$page_title = 'Add Category';
+$sidebar = 'default';
+require $_SERVER['DOCUMENT_ROOT'].'/settings.php';
+include $DOCROOT.'/templates/header.php';
 
+// ## Updating table row
 if( isset($_POST['submit_data']) ){
-
-	// Gets the data from post
-	$name = $_POST['name'];
-
-	// Makes query with post data
-	$query = "INSERT INTO categories (name) VALUES ('$name')";
-	
-	// Execute query, set success message,  otherwise set error message
-	if( $db->exec($query) ){
-		$message = '<div class="notification is-success">Data is updated successfully.</div>';
-		header( "refresh:0.5;url=/" );
-	}else{
-		$message = '<div class="notification is-danger">Sorry, Data is not updated.</div>';
-	}
+  // Get data from POST
+  $name = $_POST['name'];
+  $description = $_POST['description'];
+  
+  // Insert POST data
+  $insert = "INSERT INTO categories (name, description) VALUES ('$name', '$description')";
+  
+  // Executes query
+  try {
+    $DB->query($insert);
+  }
+  // Catch error
+  catch(PDOException $e){
+    echo '<div class="notification is-danger is-light">Add Category query exception: '.$e->getMessage().'</div>';
+  }
+  // Print success message
+  if( $$e == "" ){
+    echo '<div class="notification is-success is-light">'.$name.' Added</div>';
+  }
 }
+
+
 ?>
 
-<h1><?php echo $pageTitle; ?></h1>
+<!-- ## Form -->
 <div class="columns">
-	<div class="column is-half">
-		<?php echo $message; ?>
-		<form action="" method="post">
-			<div class="field">
-				<strong>Name:</strong><br>
-				<input class="input" type="text" name="name">
-			</div>
-		</form>
-	</div>
+  <div class="column">
+    <?php echo '<h1>'.$page_title.'</h1>'; ?>
+    <form action="" method="post">
+
+      <!-- Name -->
+      <div class="field">
+        <strong>Name:</strong><br>
+        <input class="input" type="text" name="name" value="">
+      </div>
+
+      <!-- Description -->
+      <div class="field">
+        <strong>Description:</strong><br>
+        <input class="input" type="text" name="description" value="" rows="2">
+      </div>
+
+      <!-- Save -->
+      <div class="field">
+        <input class="button is-link is-small" name="submit_data" type="submit" value="Save">
+        <a class="button is-danger is-small" href="/">Back</a>
+      </div>
+    </form>
+  </div>
+
+  <div class="column">&nbsp;</div>
+
+  <?php
+  if (isset($sidebar)){
+    echo '<div class="column is-one-fifth">';
+    include $DOCROOT.'/templates/sidebar_'.$sidebar.'.php';
+    echo '</div>';
+  }
+  ?> 
 </div>
 
-<?php include $appdir.'/incl/footer-default.php'; ?>
+<?php include $DOCROOT.'/templates/footer.php'; ?>

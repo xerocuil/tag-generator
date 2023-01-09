@@ -10,16 +10,13 @@ if( isset($_POST['submit_data']) ){
   $id = $_POST['id'];
   $name = $_POST['name'];
   $description = $_POST['description'];
-  if ($_POST['category_id'] > 0){
-    $category_id = $_POST['category_id'];
-  } else {
-    $category_id = "";
-  }
+  $category_id = $_POST['category_id'];
   $price = $_POST['price'];
   $tag = $_POST['tag'];
+  $updated = $_POST['updated'];
   
   // Make query with POST data
-  $update = "UPDATE items SET name = '$name', description = '$description', price = '$price', category_id = '$category_id', tag = '$tag' WHERE id = '$id'";
+  $update = "UPDATE items SET name = '$name', description = '$description', price = '$price', category_id = '$category_id', tag = '$tag', updated = '$updated' WHERE id = '$id'";
   
   // Executes query
   try {
@@ -27,12 +24,11 @@ if( isset($_POST['submit_data']) ){
   }
   // Print error
   catch(PDOException $e) {
-  	  print ("Add query exception: " . $e->getMessage());
+      echo '<div class="notification is-danger is-light">Categories query exception: '.$e->getMessage().'</div>';
   }
-
   // Print success message
-  if( $DB->query($update) ){
-    echo '<div class="notification is-success">Saved</div>';
+  if( $$e == "" ){
+    echo '<div class="notification is-success is-light">Saved</div>';
   }
 }
 
@@ -44,7 +40,7 @@ try {
 }
 // Print errors
 catch(PDOException $e) {
-  print ("Item query exception: " . $e->getMessage());
+  echo '<div class="notification is-danger">'.$exception.' query exception: '.$e->getMessage().'</div>';
 }
 
 //## Category Query
@@ -55,7 +51,7 @@ try {
 }
 // Print errors
 catch(PDOException $e) {
-  print ("Category query exception " . $e->getMessage());
+  $error_message = $e->getMessage();
 }
 
 // ## Categories query
@@ -68,15 +64,19 @@ catch(PDOException $e) {
   print ("Categories query exception " . $e->getMessage());
 }
 
-echo '<h1>'.$page_title.'</h1>';
+
 ?>
 
 <!-- ## Form -->
 <div class="columns">
   <div class="column">
+    <h1><?php echo '<h1>'.$page_title.'</h1>'; ?>
     <form action="" method="post">
       <!-- ID -->
       <input type="hidden" name="id" value="<?php echo $id; ?>">
+
+      <!-- Date updated -->
+      <input type="hidden" name="updated" value="<?php echo date("Y-m-d G:i:s") ?>">
       
       <!-- Name -->
 			<div class="field">

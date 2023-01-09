@@ -45,3 +45,6 @@ if (isset($page_title)) {
 
 <div id="content" class="container">
 <article>
+
+<div class="columns">
+  <div class="column">
