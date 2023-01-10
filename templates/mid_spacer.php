@@ -1,1 +1,1 @@
-<div class="column">&nbsp;</div>
+<?php echo '<div class="column">&nbsp;</div>'; ?>

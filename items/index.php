@@ -1,42 +1,30 @@
 <?php
 $page_title = 'Home';
 $sidebar = 'default';
-require $_SERVER['DOCUMENT_ROOT'].'/settings.php';
-include $DOCROOT.'/templates/header.php';
+require $_SERVER['DOCUMENT_ROOT'].'/config.php';
+include $DOCROOT.'/templates/main_header.php';
 ?>
 
-<div class="columns">
-  <div class="column">
-    <h2>Items</h2>
-    
-    <?php
-    // Items list header
-    include $DOCROOT.'/templates/list_header.php';
+<h2>Items</h2>
 
-    // Items query
-    try {
-      $items_q = $DB->query("SELECT * FROM items ORDER BY name ASC");
-      $items_r = $items_q->fetchAll(PDO::FETCH_ASSOC);
+<?php
+// Items list header
+include $DOCROOT.'/templates/list_header.php';
 
-      // Items list
-      include $DOCROOT.'/templates/list.php';
-    }
-    // Print errors
-    catch(PDOException $e) {
-      echo '<div class="notification is-danger is-light">Items query exception: '.$e->getMessage().'</div>';
-    }
+// Items query
+try {
+  $items_q = $DB->query("SELECT * FROM items ORDER BY name ASC");
+  $items_r = $items_q->fetchAll(PDO::FETCH_ASSOC);
 
-    include $DOCROOT.'/templates/list_footer.php';
-    ?>
-  </div>
+  // Items list
+  include $DOCROOT.'/templates/list.php';
+}
+// Print errors
+catch(PDOException $e) {
+  echo '<div class="notification is-danger is-light">Items query exception: '.$e->getMessage().'</div>';
+}
 
-  <?php
-  if (isset($sidebar)){
-    echo '<div class="column is-one-fifth">';
-    include $DOCROOT.'/templates/sidebar_'.$sidebar.'.php';
-    echo '</div>';
-  }
-  ?> 
-</div>
+include $DOCROOT.'/templates/list_footer.php';
+?>
 
-<?php include $DOCROOT.'/templates/footer.php'; ?>
+<?php include $DOCROOT.'/templates/main_footer.php'; ?>

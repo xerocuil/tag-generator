@@ -1,8 +1,9 @@
 <?php
 $page_title = 'Add Item';
 $sidebar = 'default';
-require $_SERVER['DOCUMENT_ROOT'].'/settings.php';
-include $DOCROOT.'/templates/header.php';
+$mid = 'spacer';
+require $_SERVER['DOCUMENT_ROOT'].'/config.php';
+include $DOCROOT.'/templates/main_header.php';
 
 // ## Updating table row
 if( isset($_POST['submit_data']) ){
@@ -33,83 +34,69 @@ if( isset($_POST['submit_data']) ){
 ?>
 
 <!-- ## Form -->
-<div class="columns">
-  <div class="column">
-    <h1><?php echo $page_title ?></h1>
-    <form action="" method="post">
+<h1><?php echo $page_title ?></h1>
+<form action="" method="post">
 
-      <!-- Date added -->
-      <input type="hidden" name="added" value="<?php echo date("Y-m-d G:i:s")  ?>">
-      
-      <!-- Name -->
-      <div class="field">
-        <strong>Name:</strong><br>
-        <input class="input" type="text" name="name" value="">
-      </div>
-
-      <!-- Description -->
-      <div class="field">
-        <strong>Description:</strong><br>
-        <input class="input" type="text" name="description" value="" rows="2">
-      </div>
-
-      <!-- Category -->
-
-      <?php
-      // ## Categories query
-      try {
-        $cats_q = $DB->query("SELECT * FROM categories WHERE id !=0 ORDER BY name ASC;");
-        $cats_r = $cats_q->fetchAll(PDO::FETCH_ASSOC);
-      }
-      // Print errors
-      catch(PDOException $e) {
-        print ("Categories query exception " . $e->getMessage());
-      }
-      ?>
-
-      <div class="field">
-        <strong>Category:</strong><br>
-        <div class="select">
-          <select name="category_id">
-            <option value="0">None</option>
-            <?php
-            foreach($cats_r as $c){
-              echo '<option value="'.$c['id'].'">'.$c['name'].'</option>';
-            }
-            ?>
-          </select>
-        </div>
-      </div>
-
-      <!-- Price -->
-      <div class="field" style="width: 72px">
-        <strong>Price:</strong><br>
-        <input class="input" type="text" name="price" value="" size="4">
-      </div>
-
-      <!-- Print batch -->
-      <div class="field">
-        <span>Add to print batch? &nbsp;</span>
-        <input type="checkbox" name="tag" value="1" checked>
-      </div>
-
-      <!-- Save -->
-      <div class="field">
-        <input class="button is-link is-small" name="submit_data" type="submit" value="Save">
-        <a class="button is-danger is-small" href="/">Back</a>
-      </div>
-    </form>
+  <!-- Date added -->
+  <input type="hidden" name="added" value="<?php echo date("Y-m-d G:i:s")  ?>">
+  
+  <!-- Name -->
+  <div class="field">
+    <strong>Name:</strong><br>
+    <input class="input" type="text" name="name" value="">
   </div>
 
-  <div class="column">&nbsp;</div>
+  <!-- Description -->
+  <div class="field">
+    <strong>Description:</strong><br>
+    <input class="input" type="text" name="description" value="" rows="2">
+  </div>
+
+  <!-- Category -->
 
   <?php
-  if (isset($sidebar)){
-    echo '<div class="column is-one-fifth">';
-    include $DOCROOT.'/templates/sidebar_'.$sidebar.'.php';
-    echo '</div>';
+  // ## Categories query
+  try {
+    $cats_q = $DB->query("SELECT * FROM categories WHERE id !=0 ORDER BY name ASC;");
+    $cats_r = $cats_q->fetchAll(PDO::FETCH_ASSOC);
   }
-  ?> 
-</div>
+  // Print errors
+  catch(PDOException $e) {
+    print ("Categories query exception " . $e->getMessage());
+  }
+  ?>
 
-<?php include $DOCROOT.'/templates/footer.php'; ?>
+  <div class="field">
+    <strong>Category:</strong><br>
+    <div class="select">
+      <select name="category_id">
+        <option value="0">None</option>
+        <?php
+        foreach($cats_r as $c){
+          echo '<option value="'.$c['id'].'">'.$c['name'].'</option>';
+        }
+        ?>
+      </select>
+    </div>
+  </div>
+
+  <!-- Price -->
+  <div class="field" style="width: 72px">
+    <strong>Price:</strong><br>
+    <input class="input" type="text" name="price" value="" size="4">
+  </div>
+
+  <!-- Print batch -->
+  <div class="field">
+    <span>Add to print batch? &nbsp;</span>
+    <input type="checkbox" name="tag" value="1" checked>
+  </div>
+
+  <!-- Save -->
+  <div class="field">
+    <input class="button is-link is-small" name="submit_data" type="submit" value="Save">
+    <a class="button is-danger is-small" href="/">Back</a>
+  </div>
+</form>
+
+<?php include $DOCROOT.'/templates/main_footer.php'; ?>

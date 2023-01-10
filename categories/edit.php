@@ -2,8 +2,8 @@
 $page_title = 'Edit Category';
 $sidebar = 'default';
 $mid = 'spacer';
-require $_SERVER['DOCUMENT_ROOT'].'/settings.php';
-include $DOCROOT.'/templates/header.php';
+require $_SERVER['DOCUMENT_ROOT'].'/config.php';
+include $DOCROOT.'/templates/main_header.php';
 
 // ## Updating table row
 if( isset($_POST['submit_data']) ){
@@ -43,42 +43,28 @@ catch(PDOException $e) {
 ?>
 
 <!-- ## Form -->
-<div class="columns">
-  <div class="column">
-    <h1><?php echo '<h1>'.$page_title.'</h1>'; ?>
-    <form action="" method="post">
-      <!-- ID -->
-      <input type="hidden" name="id" value="<?php echo $id; ?>">
-      
-      <!-- Name -->
-			<div class="field">
-			  <strong>Name:</strong><br>
-			  <input class="input" type="text" name="name" value="<?php echo $item_r['name']; ?>">
-			</div>
+<h1><?php echo $page_title; ?></h1>
+<form action="" method="post">
+  <!-- ID -->
+  <input type="hidden" name="id" value="<?php echo $id; ?>">
+  
+  <!-- Name -->
+	<div class="field">
+	  <strong>Name:</strong><br>
+	  <input class="input" type="text" name="name" value="<?php echo $item_r['name']; ?>">
+	</div>
 
-			<!-- Description -->
-			<div class="field">
-			  <strong>Description:</strong><br>
-			  <input class="input" type="text" name="description" value="<?php echo $item_r['description']; ?>" rows="2">
-			</div>
+	<!-- Description -->
+	<div class="field">
+	  <strong>Description:</strong><br>
+	  <input class="input" type="text" name="description" value="<?php echo $item_r['description']; ?>" rows="2">
+	</div>
 
-      <!-- Save -->
-      <div class="field">
-        <input class="button is-link is-small" name="submit_data" type="submit" value="Save">
-        <a class="button is-danger is-small" href="/">Back</a>
-      </div>
-    </form>
+  <!-- Save -->
+  <div class="field">
+    <input class="button is-link is-small" name="submit_data" type="submit" value="Save">
+    <a class="button is-danger is-small" href="/">Back</a>
   </div>
+</form>
 
-  <div class="column">&nbsp;<div>
-
-  <?php
-  if (isset($sidebar)){
-    echo '<div class="column is-one-fifth">';
-    include $DOCROOT.'/templates/sidebar_'.$sidebar.'.php';
-    echo '</div>';
-  }
-  ?>
-</div>
-
-<?php include $DOCROOT.'/templates/footer.php'; ?>
+<?php include $DOCROOT.'/templates/main_footer.php'; ?>
