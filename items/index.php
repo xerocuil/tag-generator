@@ -5,7 +5,7 @@ require $_SERVER['DOCUMENT_ROOT'].'/config.php';
 include $DOCROOT.'/templates/main_header.php';
 ?>
 
-<h2>Items</h2>
+<h1>Items</h1>
 
 <?php
 // Items list header
