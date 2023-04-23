@@ -9,7 +9,7 @@ $APP_DESC = 'Create SKUs for your inventory.';
 $DB = new PDO('sqlite:'.$DOCROOT.'/db/test2.db');
 $DB -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $TABLES = array("brands", "categories", "items", "settings");
-$DEBUG = True;
+$DEBUG = False;
 
 function pre_r( $array ){
   echo '<pre>';

@@ -17,7 +17,7 @@ if (isset($page_title)) {
   <title><?php echo $header_title ?></title>
   <meta name="description" content="A simple PHP-based price tag generator.">
 
-  <link rel="stylesheet" href="/assets/css/main.min.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
 
   <script src="/assets/js/font-awesome.js"></script>
 </head>
